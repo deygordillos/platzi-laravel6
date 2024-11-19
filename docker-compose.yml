@@ -15,7 +15,7 @@ services:
     ports:
       - "8180:80"
     networks:
-      - laravel
+      - laravel_shared
     environment:
       APACHE_RUN_USER: www-data
       APACHE_RUN_GROUP: www-data
@@ -41,7 +41,7 @@ services:
     volumes:
       - C:/docker/mysql/data:/var/lib/mysql
     networks:
-      - laravel
+      - laravel_shared
     
   # Servicio para phpMyAdmin
   phpmyadmin:
@@ -55,8 +55,8 @@ services:
     depends_on:
       - db
     networks:
-      - laravel
+      - laravel_shared
 
 networks:
-  laravel:
-    driver: bridge
+  laravel_shared:
+    external: true
